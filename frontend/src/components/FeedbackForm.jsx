@@ -1,15 +1,15 @@
 import { useState } from "react";
 import '../index.css';
-function Feedback() {
+function FeedbackForm() {
   const handleSubmit = (e) => {
     e.preventDefault();
     const feedbackData = {
       name: name,
       email: email,
-      feedback: feedback,
+      description: feedback,
     };
     setLoading(true);
-    fetch("http://localhost:5000/feedback", {
+    fetch("http://localhost:7000/api/submit-feedback", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -19,6 +19,9 @@ function Feedback() {
       .then((response) => {
         if (response.ok) {
           setSubmitted(true);
+          setName("");
+          setEmail("");
+          setfeedback("");
           setError(false);
         } else {
           throw new Error("Network response was not ok");
@@ -40,13 +43,13 @@ function Feedback() {
   const [loading, setLoading] = useState(false);
 
   return (
-    <div className="min-h-screen bg-white flex items-center justify-center p-4">
+    <div className="min-h-screen w-full bg-white flex items-center justify-center p-4">
       {loading ? (
         <p className="text-center text-gray-700 text-lg sm:text-xl animate-pulse">Loading...</p>
       ) : (
         <div className="feedback bg-white p-6 rounded-lg shadow-md w-full max-w-md">
           <div>
-            <h2 className="text-2xl font-bold text-center text-green mb-4 animate-typing">We Value your opinion</h2>
+            <h2 className="text-3xl font-bold text-center text-green mb-4 animate-typing">We Value your opinion</h2>
           </div>
           <form onSubmit={handleSubmit} className="space-y-4 bg-white">
             <label className="block text-black font-medium text-lg sm:text-xl">
@@ -54,6 +57,7 @@ function Feedback() {
               <input
                 type="text"
                 value={name}
+                required
                 onChange={(e) => setName(e.target.value)}
                 className="w-full mt-1 p-2 border border-black rounded focus:outline-none focus:ring-2 focus:ring-blue-500 text-base sm:text-lg"
               />
@@ -63,6 +67,7 @@ function Feedback() {
               <input
                 type="email"
                 value={email}
+                required
                 onChange={(e) => setEmail(e.target.value)}
                 className="w-full mt-1 p-2 border border-black rounded focus:outline-none focus:ring-2 focus:ring-blue-500 text-base sm:text-lg"
               />
@@ -71,6 +76,7 @@ function Feedback() {
               Feedback:
               <textarea
                 value={feedback}
+                required
                 onChange={(e) => setfeedback(e.target.value)}
                 className="w-full mt-1 p-2 border border-black rounded focus:outline-none focus:ring-2 focus:ring-blue-500 text-base sm:text-lg"
               />
@@ -98,4 +104,4 @@ function Feedback() {
   );
 }
 
-export default Feedback;
+export default FeedbackForm;
