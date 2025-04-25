@@ -16,7 +16,9 @@ app.use(rateLimit({
 
 app.use(urlencoded({ extended: true }));
 app.use(express.json());
-app.use(cors());
+app.use(cors({
+  origin: 'http://localhost:5173/', 
+}));
 app.use('/api/', feedbackRoutes);
 
 const PORT = process.env.PORT || 5000;
