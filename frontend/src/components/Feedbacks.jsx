@@ -1,16 +1,17 @@
 import { useEffect, useState } from "react";
 import FeedbackCard from "./FeedbackCard";
 import useMediaQuery from '@mui/material/useMediaQuery';
-export default function Feedbacks (){
 
-  const [show,setShow] = useState(false);
-  const [feedbacks,setFeedbacks] = useState([]);
-  const[selectedFeedback,setSelectedFeedback] = useState(null);
+export default function Feedbacks({ isDarkTheme }) {
+  const [show, setShow] = useState(false);
+  const [feedbacks, setFeedbacks] = useState([]);
+  const [selectedFeedback, setSelectedFeedback] = useState(null);
   const smallScreen = useMediaQuery('(max-width: 600px)');
-  const toggleShow =()=>{
+  const toggleShow = () => {
     setShow(!show);
-  }
-  useEffect(()=>{
+  };
+
+  useEffect(() => {
     const fetchFeedbacks = async () => {
       try {
         const response = await fetch('http://localhost:7000/api/feedbacks');
@@ -22,20 +23,28 @@ export default function Feedbacks (){
       }
     };
     fetchFeedbacks();
-  },[show]);
-  return(
-    <div>
+  }, [show]);
+
+  return (
+    <div
+      style={{
+        backgroundColor: isDarkTheme ? '#121212' : '#f9f9f9',
+        color: isDarkTheme ? '#ffffff' : '#000000',
+        minHeight: '100vh',
+        padding: '20px',
+      }}
+    >
       <div style={{ display: 'flex', justifyContent: 'center', margin: '20px 0' }}>
-        <button 
+        <button
           style={{
             color: "white",
-            backgroundColor: "blue",
+            backgroundColor: isDarkTheme ? "#333" : "blue",
             borderRadius: "10px",
             fontWeight: "bold",
             padding: "10px 20px",
             border: "none",
-            cursor: "pointer"
-          }} 
+            cursor: "pointer",
+          }}
           onClick={toggleShow}
         >
           {show ? "Hide feedback" : "Show feedback"}
@@ -47,30 +56,32 @@ export default function Feedbacks (){
           gridTemplateColumns: smallScreen ? 'repeat(1, 1fr)' : 'repeat(2, 1fr)',
           gap: '20px',
           justifyContent: 'center',
-          alignItems: 'stretch', 
-        }}>
-        {show && (feedbacks.map((feedback) => (
-          <div 
-            key={feedback._id} 
+          alignItems: 'stretch',
+        }}
+      >
+        {show && feedbacks.map((feedback) => (
+          <div
+            key={feedback._id}
             style={{
               display: 'flex',
               flexDirection: 'column',
               justifyContent: 'space-between',
-              border: '1px solid #ccc',
+              border: isDarkTheme ? '1px solid #444' : '1px solid #ccc',
               borderRadius: '10px',
               padding: '10px',
               cursor: 'pointer',
+              backgroundColor: isDarkTheme ? '#1e1e1e' : '#ffffff',
               height: '100%',
             }}
             onClick={() => setSelectedFeedback(feedback)}
           >
-            <FeedbackCard feedback={feedback} />
+            <FeedbackCard isDarkTheme={isDarkTheme} feedback={feedback} />
           </div>
-        )))}
+        ))}
       </div>
 
       {selectedFeedback && (
-        <div 
+        <div
           style={{
             position: 'fixed',
             top: 0,
@@ -83,19 +94,20 @@ export default function Feedbacks (){
             alignItems: 'center',
           }}
         >
-          <div 
+          <div
             style={{
-              backgroundColor: 'white',
+              backgroundColor: isDarkTheme ? '#1e1e1e' : 'white',
+              color: isDarkTheme ? '#ffffff' : '#000000',
               padding: '20px',
               borderRadius: '10px',
               width: '50%',
               position: 'relative',
             }}
           >
-            <button 
+            <button
               style={{
                 position: 'absolute',
-                color:'red',
+                color: 'red',
                 top: '-10px',
                 right: '0px',
                 background: 'none',
@@ -108,10 +120,10 @@ export default function Feedbacks (){
             >
               &times;
             </button>
-            <FeedbackCard feedback={selectedFeedback} />
+            <FeedbackCard isDarkTheme={isDarkTheme} feedback={selectedFeedback} />
           </div>
         </div>
       )}
     </div>
-  )
+  );
 }

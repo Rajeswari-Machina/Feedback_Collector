@@ -4,7 +4,8 @@ import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 import CardActionArea from '@mui/material/CardActionArea';
 import FormatQuoteIcon from '@mui/icons-material/FormatQuote';
-export default function FeedbackCard({ feedback }) {
+
+export default function FeedbackCard({ feedback, isDarkTheme }) {
   return (
     <Card
       sx={{
@@ -12,7 +13,8 @@ export default function FeedbackCard({ feedback }) {
         height: '100%',
         position: 'relative',
         overflow: 'hidden',
-        backgroundColor: '#f5f5f5',
+        backgroundColor: isDarkTheme ? '#333' : '#f5f5f5',
+        color: isDarkTheme ? '#fff' : '#000',
         boxShadow: '0 4px 8px rgba(0, 0, 0, 0.2)',
         transition: 'transform 0.2s',
         '&:hover': {
@@ -27,6 +29,7 @@ export default function FeedbackCard({ feedback }) {
           left: '0px',
           width: '20px',
           height: '20px',
+          color: isDarkTheme ? '#fff' : '#000',
         }}
       />
       <FormatQuoteIcon
@@ -36,6 +39,7 @@ export default function FeedbackCard({ feedback }) {
           right: '0px',
           width: '20px',
           height: '20px',
+          color: isDarkTheme ? '#fff' : '#000',
         }}
       />
       <CardActionArea>
@@ -43,7 +47,7 @@ export default function FeedbackCard({ feedback }) {
           <Typography
             variant="body2"
             sx={{
-              color: 'black',
+              color: isDarkTheme ? '#fff' : 'black',
               fontWeight: 'bold',
               fontSize: '1.5rem',
               marginBottom: '10px',
@@ -57,7 +61,7 @@ export default function FeedbackCard({ feedback }) {
           variant="h5"
           component="div"
           sx={{
-            color: 'black',
+            color: isDarkTheme ? '#fff' : 'black',
             fontSize: '1.2rem',
             padding: '10px',
             marginLeft: '20px',
@@ -69,7 +73,7 @@ export default function FeedbackCard({ feedback }) {
         <Typography
           variant="body2"
           sx={{
-            color: 'black',
+            color: isDarkTheme ? '#ccc' : 'black',
             fontweight: '20px',
             padding: '10px',
             fontSize: '1rem',

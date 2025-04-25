@@ -24,9 +24,9 @@ function App() {
       <Header isAdmin={isAdmin} toggleTheme={toggleTheme} isDarkTheme={isDarkTheme} />
       <div className='flex-grow'>
         <Routes>
-          <Route path='/' element={<User />} />
-          <Route path='/Adminlogin' element={<Login isAdmin={isAdmin} handleLogin={handleLogin} />} />
-          {isAdmin && <Route path='/admin' element={<Feedbacks />} />}
+          <Route path='/' element={<User  isDarkTheme={isDarkTheme}/>} />
+          <Route path='/Adminlogin' element={<Login isDarkTheme={isDarkTheme} isAdmin={isAdmin} handleLogin={handleLogin} />} />
+          {isAdmin && <Route path='/admin' element={<Feedbacks  isDarkTheme={isDarkTheme}/>} />}
           <Route path='*' element={<h1 className='text-red-500 h-screen flex justify-center items-center'>NOT FOUND </h1>} />
         </Routes>
       </div>

@@ -1,6 +1,7 @@
 import { useState } from "react";
 import '../index.css';
-function FeedbackForm() {
+
+function FeedbackForm({ isDarkTheme }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     const feedbackData = {
@@ -43,58 +44,82 @@ function FeedbackForm() {
   const [loading, setLoading] = useState(false);
 
   return (
-    <div className="min-h-screen w-full bg-white flex items-center justify-center p-4">
+    <div
+      className={`min-h-screen w-full flex items-center justify-center p-4 ${
+        isDarkTheme ? "bg-gray-900 text-white" : "bg-white text-black"
+      }`}
+    >
       {loading ? (
         <p className="text-center text-gray-700 text-lg sm:text-xl animate-pulse">Loading...</p>
       ) : (
-        <div className="feedback bg-white p-6 rounded-lg shadow-md w-full max-w-md">
+        <div
+          className={`feedback p-6 rounded-lg shadow-md w-full max-w-md ${
+            isDarkTheme ? "bg-gray-800 text-white" : "bg-white text-black"
+          }`}
+        >
           <div>
-            <h2 className="text-3xl font-bold text-center text-green mb-4 animate-typing">We Value your opinion</h2>
+            <h2 className="text-3xl font-bold text-center mb-4 animate-typing">
+              We Value your opinion
+            </h2>
           </div>
-          <form onSubmit={handleSubmit} className="space-y-4 bg-white">
-            <label className="block text-black font-medium text-lg sm:text-xl">
+          <form onSubmit={handleSubmit} className="space-y-4">
+            <label className="block font-medium text-lg sm:text-xl">
               Name:
               <input
                 type="text"
                 value={name}
                 required
                 onChange={(e) => setName(e.target.value)}
-                className="w-full mt-1 p-2 border border-black rounded focus:outline-none focus:ring-2 focus:ring-blue-500 text-base sm:text-lg"
+                className={`w-full mt-1 p-2 border rounded focus:outline-none focus:ring-2 ${
+                  isDarkTheme
+                    ? "border-gray-600 bg-gray-700 text-white focus:ring-blue-500"
+                    : "border-black focus:ring-blue-500"
+                } text-base sm:text-lg`}
               />
             </label>
-            <label className="block text-black font-medium text-lg sm:text-xl">
+            <label className="block font-medium text-lg sm:text-xl">
               Email:
               <input
                 type="email"
                 value={email}
                 required
                 onChange={(e) => setEmail(e.target.value)}
-                className="w-full mt-1 p-2 border border-black rounded focus:outline-none focus:ring-2 focus:ring-blue-500 text-base sm:text-lg"
+                className={`w-full mt-1 p-2 border rounded focus:outline-none focus:ring-2 ${
+                  isDarkTheme
+                    ? "border-gray-600 bg-gray-700 text-white focus:ring-blue-500"
+                    : "border-black focus:ring-blue-500"
+                } text-base sm:text-lg`}
               />
             </label>
-            <label className="block text-black font-medium text-lg sm:text-xl">
+            <label className="block font-medium text-lg sm:text-xl">
               Feedback:
               <textarea
                 value={feedback}
                 required
                 onChange={(e) => setfeedback(e.target.value)}
-                className="w-full mt-1 p-2 border border-black rounded focus:outline-none focus:ring-2 focus:ring-blue-500 text-base sm:text-lg"
+                className={`w-full mt-1 p-2 border rounded focus:outline-none focus:ring-2 ${
+                  isDarkTheme
+                    ? "border-gray-600 bg-gray-700 text-white focus:ring-blue-500"
+                    : "border-black focus:ring-blue-500"
+                } text-base sm:text-lg`}
               />
             </label>
             <button
               type="submit"
-              className="w-full bg-black text-white py-2 rounded hover:bg-gray-800 transition text-base sm:text-lg"
+              className={`w-full py-2 rounded hover:bg-gray-800 transition text-base sm:text-lg ${
+                isDarkTheme ? "bg-gray-700 text-white" : "bg-black text-white"
+              }`}
             >
               Submit
             </button>
           </form>
           {submitted && (
-            <p className="text-green-600 mt-4 text-lg sm:text-xl animate-typing">
+            <p className="mt-4 text-lg sm:text-xl animate-typing text-green-500">
               Feedback submitted successfully!
             </p>
           )}
           {error && (
-            <p className="text-red-600 mt-4 text-lg sm:text-xl animate-typing">
+            <p className="mt-4 text-lg sm:text-xl animate-typing text-red-500">
               Error submitting feedback. Please try again.
             </p>
           )}
