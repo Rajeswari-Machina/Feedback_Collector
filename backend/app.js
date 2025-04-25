@@ -5,9 +5,14 @@ const bodyParser = require('body-parser');
 const { urlencoded } = bodyParser;
 const connectDB = require('./config/db.js');
 const feedbackRoutes = require('./routes/feedbackRoutes');
-
+const rateLimit = require('express-rate-limit');
 const app = express();
 connectDB();
+
+app.use(rateLimit({
+  windowMs: 1 * 60 * 1000, 
+  max: 50, 
+}));
 
 app.use(urlencoded({ extended: true }));
 app.use(express.json());
