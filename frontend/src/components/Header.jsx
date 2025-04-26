@@ -15,13 +15,13 @@ export default function Header({ isDarkTheme, toggleTheme }) {
       <div className="flex items-center space-x-4">
         <button
           onClick={toggleTheme}
-          className={`${
+          className={` sm:text-sm ${
             isDarkTheme ? 'bg-gray-600' : 'bg-gray-200'
           } text-black px-4 py-2 rounded`}
         >
           {isDarkTheme ? 'Light Mode' : 'Dark Mode'}
         </button>
-        <div className="text-lg font-bold">
+        <div className="text-lg font-bold sm:text-sm">
           <a
             href="/Adminlogin"
             className="text-white font-bold hover:text-gray-300 transition duration-300 ease-in-out no-underline"
