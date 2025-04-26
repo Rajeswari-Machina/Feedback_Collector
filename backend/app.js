@@ -18,7 +18,7 @@ app.use(rateLimit({
 app.use(urlencoded({ extended: true }));
 app.use(express.json());
 app.use(cors({
-  origin: 'http://localhost:5173', 
+  origin: ['http://localhost:5173','https://feedbackcollector1.netlify.app/'] 
 }));
 app.use('/api/', feedbackRoutes);
 app.use('/api/auth',authRoute);
