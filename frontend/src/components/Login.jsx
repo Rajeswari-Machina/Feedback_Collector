@@ -11,7 +11,7 @@ export default function Login({ handleLogin, isDarkTheme }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    fetch("http://localhost:7000/api/auth/login", {
+    fetch("https://feedback-collector-jb6m.onrender.com/api/auth/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

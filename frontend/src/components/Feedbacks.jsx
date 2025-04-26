@@ -14,7 +14,7 @@ export default function Feedbacks({ isDarkTheme }) {
   useEffect(() => {
     const fetchFeedbacks = async () => {
       try {
-        const response = await fetch('http://localhost:7000/api/feedbacks');
+        const response = await fetch('https://feedback-collector-jb6m.onrender.com/api/feedbacks');
         const data = await response.json();
         setFeedbacks(data.data);
         console.log(feedbacks);

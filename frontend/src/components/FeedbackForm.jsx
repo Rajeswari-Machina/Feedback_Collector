@@ -10,7 +10,7 @@ function FeedbackForm({ isDarkTheme }) {
       description: feedback,
     };
     setLoading(true);
-    fetch("http://localhost:7000/api/submit-feedback", {
+    fetch("https://feedback-collector-jb6m.onrender.com/api/submit-feedback", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
