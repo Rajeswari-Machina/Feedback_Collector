@@ -85,6 +85,8 @@ Create a `.env` file in the root of the `server/` directory:
 ```env
 PORT=5000
 MONGO_URI=your-mongodb-connection-string
+ADMIN_EMAIL = email
+ADMIN_PASSWORD = passwd
 ```
 
 ---
