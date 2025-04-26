@@ -3,7 +3,7 @@ import '../index.css';
 export default function Header({ isDarkTheme, toggleTheme }) {
   return (
     <div
-      className={`${
+      className={`sticky top-0${
         isDarkTheme ? 'bg-gray-800 text-white' : 'bg-blue-500 text-white'
       } flex justify-between items-center p-4`}
     >
