@@ -3,9 +3,9 @@ import '../index.css';
 export default function Header({ isDarkTheme, toggleTheme }) {
   return (
     <div
-      className={`sticky top-0${
+      className={` ${
         isDarkTheme ? 'bg-gray-800 text-white' : 'bg-blue-500 text-white'
-      } flex justify-between items-center p-4`}
+      } flex justify-between items-center p-4 sticky top-0`}
     >
       <div className="text-xl font-bold md:text-2xl">
         <a href="/" className="no-underline">
