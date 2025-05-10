@@ -5,7 +5,7 @@ export default function Header({ isDarkTheme, toggleTheme }) {
     <div
       className={` ${
         isDarkTheme ? 'bg-gray-800 text-white' : 'bg-blue-500 text-white'
-      } flex justify-between items-center p-4 sticky top-0`}
+      } flex justify-between items-center p-4 sticky top-0 z-100`}
     >
       <div className="text-xl font-bold md:text-2xl">
         <a href="/" className="no-underline">
