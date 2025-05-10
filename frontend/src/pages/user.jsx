@@ -5,7 +5,7 @@ import '../index.css';
 export default function User({ isDarkTheme }) {
   return (
     <div className={`${isDarkTheme ? 'bg-gray-900 text-white' : 'bg-white text-black'} min-h-screen flex flex-col md:flex-row`}>
-      <div className="hidden md:flex md:w-1/2 justify-center items-center p-4 relative">
+      <div className="hidden md:flex md:w-1/2 justify-center items-center p-4 ">
         <img src={image} alt="Feedback" className="w-full h-auto max-w-md" />
       </div>
       
